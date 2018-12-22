@@ -30,15 +30,18 @@
 	return ::IsTileType(tile, MP_STATION) && ::IsAirport(tile);
 }
 
-/* static */ bool AIAirport::BuildAirport(TileIndex tile, AirportType type, StationID station_id)
+/* static */ bool AIAirport::BuildAirport(TileIndex tile, AirportType type, AirportView view, StationID station_id)
 {
 	EnforcePrecondition(false, ::IsValidTile(tile));
 	EnforcePrecondition(false, AIAirportType::IsBuildableAirportType(type));
+	EnforcePrecondition(false, AIAirportType::IsValidAirportView(view, type));
 	EnforcePrecondition(false, station_id == AIStation::STATION_NEW || station_id == AIStation::STATION_JOIN_ADJACENT || AIStation::IsValidStation(station_id));
 
+	uint p1 = type;
+	p1 |= view << 8;
 	uint p2 = station_id == AIStation::STATION_JOIN_ADJACENT ? 0 : 1;
 	p2 |= (AIStation::IsValidStation(station_id) ? station_id : INVALID_STATION) << 16;
-	return AIObject::DoCommand(tile, type, p2, CMD_BUILD_AIRPORT);
+	return AIObject::DoCommand(tile, p1, p2, CMD_BUILD_AIRPORT);
 }
 
 /* static */ bool AIAirport::RemoveAirport(TileIndex tile)
@@ -84,3 +87,18 @@
 
 	return (AirportType)::Station::Get(station_id)->airport.type;
 }
+
+/* static */ AirportView AIAirport::GetAirportView(TileIndex tile)
+{
+	if (!AITile::IsStationTile(tile)) return AT_INVALID;
+
+	StationID station_id = ::GetStationIndex(tile);
+
+	/* Reject every station that is not an airport owned by the ai company */
+	if (!AIStation::HasStationType(station_id, AIStation::STATION_AIRPORT)) return AT_INVALID;
+
+	Station *st = ::Station::Get(station_id);
+
+	return st->airport.layout;
+}
+

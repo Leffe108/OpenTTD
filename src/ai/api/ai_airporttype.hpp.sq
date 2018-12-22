@@ -37,10 +37,11 @@ void SQAIAirportType_Register(Squirrel *engine)
 
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsBuildableAirportType,            "IsBuildableAirportType",            2, ".i");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsAirportTypeInformationAvailable, "IsAirportTypeInformationAvailable", 2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsValidAirportView,                "IsValidAirportView",                3, ".ii");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsValidPlaneType,                  "IsValidPlaneType",                  2, ".i");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetPrice,                          "GetPrice",                          2, ".i");
-	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportWidth,                   "GetAirportWidth",                   2, ".i");
-	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportHeight,                  "GetAirportHeight",                  2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportWidth,                   "GetAirportWidth",                   3, ".ii");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportHeight,                  "GetAirportHeight",                  3, ".ii");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetNumHangars,                     "GetNumHangars",                     2, ".i");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetNumHelipads,                    "GetNumHelipads",                    2, ".i");
 	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetNumTerminals,                   "GetNumTerminals",                   2, ".i");

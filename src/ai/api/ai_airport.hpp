@@ -63,9 +63,11 @@ public:
 	 * Builds a airport with tile at the topleft corner.
 	 * @param tile The topleft corner of the airport.
 	 * @param type The type of airport to build.
+	 * @param view The view of given airport type to build
 	 * @param station_id The station to join, AIStation::STATION_NEW or AIStation::STATION_JOIN_ADJACENT.
 	 * @pre AIMap::IsValidTile(tile).
 	 * @pre AIAirportType::IsBuildableAirportType(type).
+	 * @pre AIAirportType::IsValidAirportView(type, view).
 	 * @pre station_id == AIStation::STATION_NEW || station_id == AIStation::STATION_JOIN_ADJACENT || AIStation::IsValidStation(station_id).
 	 * @exception AIError::ERR_AREA_NOT_CLEAR
 	 * @exception AIError::ERR_FLAT_LAND_REQUIRED
@@ -74,7 +76,7 @@ public:
 	 * @exception AIStation::ERR_STATION_TOO_CLOSE_TO_ANOTHER_STATION
 	 * @return Whether the airport has been/can be build or not.
 	 */
-	static bool BuildAirport(TileIndex tile, AirportType type, StationID station_id);
+	static bool BuildAirport(TileIndex tile, AirportType type, AirportView view, StationID station_id);
 
 	/**
 	 * Removes an airport.
@@ -93,6 +95,15 @@ public:
 	 * @return The AirportType of the airport.
 	 */
 	static AirportType GetAirportType(TileIndex tile);
+
+	/**
+	 * Get the AirportView of an existing airport
+	 * @param tile Any tile of the airport.
+	 * @pre AITile::IsStationTile(tile)
+	 * @pre AIStation::HasStationType(AIStation.GetStationID(tile), AIStation::STATION_AIRPORT).
+	 * @return The AirportView of the airport.
+	 */
+	static AirportView GetAirportView(TileIndex tile);
 };
 
 #endif /* AI_AIRPORT_HPP */

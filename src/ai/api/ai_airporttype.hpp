@@ -79,18 +79,22 @@ public:
 	/**
 	 * Get the width of of the given airport type.
 	 * @param type The type of airport.
+	 * @param view The view of the airport type.
 	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @pre IsValidAirportView(type, view).
 	 * @return The width in tiles.
 	 */
-	static int32 GetAirportWidth(AirportType type);
+	static int32 GetAirportWidth(AirportType type, AirportView view);
 
 	/**
 	 * Get the height of of the given airport type.
 	 * @param type The type of airport.
+	 * @param view The view of the airport type.
 	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @pre IsValidAirportView(type, view).
 	 * @return The height in tiles.
 	 */
-	static int32 GetAirportHeight(AirportType type);
+	static int32 GetAirportHeight(AirportType type, AirportView view);
 
 	/**
 	 * Get the number of hangars of the given airport type.

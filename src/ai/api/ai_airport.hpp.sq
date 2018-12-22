@@ -30,9 +30,10 @@ void SQAIAirport_Register(Squirrel *engine)
 	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::IsAirportTile,      "IsAirportTile",      2, ".i");
 	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::GetNumHangars,      "GetNumHangars",      2, ".i");
 	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::GetHangarOfAirport, "GetHangarOfAirport", 2, ".i");
-	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::BuildAirport,       "BuildAirport",       4, ".iii");
+	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::BuildAirport,       "BuildAirport",       5, ".iiii");
 	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::RemoveAirport,      "RemoveAirport",      2, ".i");
 	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::GetAirportType,     "GetAirportType",     2, ".i");
+	SQAIAirport.DefSQStaticMethod(engine, &AIAirport::GetAirportView,     "GetAirportView",     2, ".i");
 
 	SQAIAirport.PostRegister(engine);
 }

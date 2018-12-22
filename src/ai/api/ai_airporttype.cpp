@@ -46,18 +46,48 @@
 	return _price[PR_BUILD_STATION_AIRPORT] * as->size_x * as->size_y;
 }
 
-/* static */ int32 AIAirportType::GetAirportWidth(AirportType type)
+/* static */ int32 AIAirportType::GetAirportWidth(AirportType type, AirportView view)
 {
 	if (!IsAirportTypeInformationAvailable(type)) return -1;
+	if (!IsValidAirportView(view, type)) return -1;
 
-	return ::AirportSpec::Get(type)->size_x;
+	const AirportSpec *as = ::AirportSpec::Get(type);
+	Direction dir = as->rotation[view];
+	switch(dir)
+	{
+		case DIR_N:
+		case DIR_S:
+			return as->size_x;
+
+		case DIR_E:
+		case DIR_W:
+			return as->size_y;
+
+		default:
+			NOT_REACHED();
+	}
 }
 
-/* static */ int32 AIAirportType::GetAirportHeight(AirportType type)
+/* static */ int32 AIAirportType::GetAirportHeight(AirportType type, AirportView view)
 {
 	if (!IsAirportTypeInformationAvailable(type)) return -1;
+	if (!IsValidAirportView(view, type)) return -1;
 
-	return ::AirportSpec::Get(type)->size_y;
+	const AirportSpec *as = ::AirportSpec::Get(type);
+	Direction dir = as->rotation[view];
+	switch(dir)
+	{
+		case DIR_N:
+		case DIR_S:
+			return as->size_y;
+
+		case DIR_E:
+		case DIR_W:
+			return as->size_x;
+
+		default:
+			NOT_REACHED();
+	}
 }
 
 /* static */ int32 AIAirportType::GetNumHangars(AirportType type)

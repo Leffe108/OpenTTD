@@ -26,6 +26,13 @@
 	return type >= 0 && type < (AirportType)NUM_AIRPORTS && AirportSpec::Get(type)->enabled;
 }
 
+/* static */ bool AIAirportType::IsValidAirportView(AirportView airport_view, AirportType airport_type)
+{
+	if (!IsAirportTypeInformationAvailable(airport_type)) return false;
+
+	return AirportSpec::Get(airport_type)->num_table > airport_view;
+}
+
 /* static */ bool AIAirportType::IsValidPlaneType(PlaneType plane_type)
 {
 	return plane_type == PT_SMALL_PLANE || plane_type == PT_BIG_PLANE || plane_type == PT_HELICOPTER;

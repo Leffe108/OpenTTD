@@ -27,6 +27,7 @@
 #include "api/ai_airport.hpp.sq"
 #include "api/ai_airporttype.hpp.sq"
 #include "api/ai_airporttypelist.hpp.sq"
+#include "api/ai_airportviewlist.hpp.sq"
 #include "api/ai_base.hpp.sq"
 #include "api/ai_basestation.hpp.sq"
 #include "api/ai_bridge.hpp.sq"
@@ -181,6 +182,7 @@ void AIInstance::RegisterAPI()
 	SQAIAirport_Register(this->engine);
 	SQAIAirportType_Register(this->engine);
 	SQAIAirportTypeList_Register(this->engine);
+	SQAIAirportViewList_Register(this->engine);
 	SQAIBase_Register(this->engine);
 	SQAIBaseStation_Register(this->engine);
 	SQAIBridge_Register(this->engine);

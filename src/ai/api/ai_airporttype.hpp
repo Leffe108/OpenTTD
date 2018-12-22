@@ -13,6 +13,7 @@
 #define AI_AIRPORTTYPE_HPP
 
 #include "ai_object.hpp"
+#include "ai_types.hpp"
 
 /**
  * Class that handles all airport type related functions.
@@ -51,6 +52,14 @@ public:
 	 * @post return value == false -> IsBuildableAirportType returns false.
 	 */
 	static bool IsAirportTypeInformationAvailable(AirportType type);
+
+	/**
+	 * Check if a view is valid for a given airport type.
+	 * @param airport_view The view to check
+	 * @param airport_type The airport type for which to check if the view exist
+	 * @return True if and only if the AirportView is valid for the give AirportType
+	 */
+	static bool IsValidAirportView(AirportView airport_view, AirportType airport_type);
 
 	/**
 	 * Checks wheather the given PlaneType is valid

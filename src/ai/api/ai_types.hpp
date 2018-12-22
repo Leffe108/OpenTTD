@@ -103,5 +103,6 @@ typedef uint32 VehicleID;    ///< The ID of a vehicle.
 typedef byte AirportType;    ///< The ID of an airport type.
 typedef uint AIErrorType;    ///< The types of errors inside the NoAI framework.
 typedef BridgeType BridgeID; ///< The ID of a bridge.
+typedef byte AirportView;    ///< The ID of an airport view
 
 #endif /* AI_TYPES_HPP */

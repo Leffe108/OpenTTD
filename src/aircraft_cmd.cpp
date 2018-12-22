@@ -1754,8 +1754,11 @@ static bool FreeTerminal(Aircraft *v, byte i, byte last_terminal)
  * @param afc Airport description.
  * @return Number of terminals.
  */
-static uint GetNumTerminals(const AirportFTAClass *apc)
+uint GetNumTerminals(const AirportFTAClass *apc)
 {
+	/* Handle the case when there are no terminals (eg. a helicopter only airport) */
+	if (apc->terminals == 0) return 0;
+
 	uint num = 0;
 
 	for (uint i = apc->terminals[0]; i > 0; i--) num += apc->terminals[i];

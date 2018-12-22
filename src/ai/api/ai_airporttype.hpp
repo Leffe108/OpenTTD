@@ -84,6 +84,53 @@ public:
 	static int32 GetAirportHeight(AirportType type);
 
 	/**
+	 * Get the number of hangars of the given airport type.
+	 * @param type The type of airport.
+	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @return The number of hangars.
+	 */
+	static int32 GetNumHangars(AirportType type);
+
+	/**
+	 * Get the number of helipads of the given airport type.
+	 * @param type The type of airport.
+	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @return The number of helipads.
+	 */
+	static int32 GetNumHelipads(AirportType type);
+
+	/**
+	 * Get the number of terminals of the given airport type.
+	 * @param type The type of airport.
+	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @return The number of terminals.
+	 */
+	static int32 GetNumTerminals(AirportType type);
+
+	/**
+	 * Check if a plane type can land on a airport type
+	 * @param type The type of airport.
+	 * @param plane_type The plane type.
+	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @pre IsValidPlaneType(plane_type).
+	 * @return True if and only if the given plane type can land on the given airport type.
+	 */
+	static bool CanPlaneTypeLand(AirportType type, PlaneType plane_type);
+
+	/**
+	 * Check if landing on the given airport type is extra dangerous for a given plane type.
+	 * Extra dangerous airport and plane type combinations increase the chance that the
+	 * airplane will crash on landing.
+	 * @param type The type of airport.
+	 * @param plane_type The plane type.
+	 * @pre IsAirportTypeInformationAvailable(type).
+	 * @pre IsValidPlaneType(plane_type).
+	 * @pre CanPlaneTypeLand(type, plane_type)
+	 * @return True if and only if the given plane type has a higher crash chance than usual when landing on the given airport type.
+	 */
+	static bool IsLandingExtraDangerous(AirportType type, PlaneType plane_type);
+
+	/**
 	 * Get the coverage radius of this type of airport.
 	 * @param type The type of airport.
 	 * @pre IsAirportTypeInformationAvailable(type).

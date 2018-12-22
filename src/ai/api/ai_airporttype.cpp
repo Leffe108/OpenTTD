@@ -53,6 +53,57 @@
 	return ::AirportSpec::Get(type)->size_y;
 }
 
+/* static */ int32 AIAirportType::GetNumHangars(AirportType type)
+{
+	if (!IsAirportTypeInformationAvailable(type)) return -1;
+
+	return ::AirportSpec::Get(type)->nof_depots;
+}
+
+/* static */ int32 AIAirportType::GetNumHelipads(AirportType type)
+{
+	if (!IsAirportTypeInformationAvailable(type)) return -1;
+
+	return ::AirportSpec::Get(type)->fsm->num_helipads;
+}
+
+/* static */ int32 AIAirportType::GetNumTerminals(AirportType type)
+{
+	if (!IsAirportTypeInformationAvailable(type)) return -1;
+
+	return ::GetNumTerminals(::AirportSpec::Get(type)->fsm);
+}
+
+/* static */ bool AIAirportType::CanPlaneTypeLand(AirportType type, AIAirportType::PlaneType plane_type)
+{
+	if (!IsAirportTypeInformationAvailable(type)) return false;
+	if (!IsValidPlaneType(plane_type)) return false;
+
+	/* Get the FTA flags */
+	AirportFTAClass::Flags fta_flags = ::AirportSpec::Get(type)->fsm->flags;
+
+	switch(plane_type)
+	{
+		case PT_SMALL_PLANE:
+			/* FALL THROUGH */
+		case PT_BIG_PLANE:
+			return (fta_flags & AirportFTAClass::AIRPLANES) != 0;
+
+		case PT_HELICOPTER:
+			return (fta_flags & AirportFTAClass::HELICOPTERS) != 0;
+
+		default:
+			NOT_REACHED();
+	};
+}
+
+/* static */ bool AIAirportType::IsLandingExtraDangerous(AirportType type, AIAirportType::PlaneType plane_type)
+{
+	if (!IsAirportTypeInformationAvailable(type)) return false;
+
+	return plane_type == PT_BIG_PLANE && (::AirportSpec::Get(type)->fsm->flags & AirportFTAClass::SHORT_STRIP) != 0;
+}
+
 /* static */ int32 AIAirportType::GetAirportCoverageRadius(AirportType type)
 {
 	if (!IsAirportTypeInformationAvailable(type)) return -1;

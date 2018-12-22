@@ -100,6 +100,7 @@ typedef uint16 TownID;       ///< The ID of a town.
 typedef uint32 VehicleID;    ///< The ID of a vehicle.
 
 /* Types we defined ourself, as the OpenTTD core doesn't have them (yet) */
+typedef byte AirportType;    ///< The ID of an airport type.
 typedef uint AIErrorType;    ///< The types of errors inside the NoAI framework.
 typedef BridgeType BridgeID; ///< The ID of a bridge.
 

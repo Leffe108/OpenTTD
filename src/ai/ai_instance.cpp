@@ -25,6 +25,7 @@
  * Note: this line a marker in squirrel_export.sh. Do not change! */
 #include "api/ai_accounting.hpp.sq"
 #include "api/ai_airport.hpp.sq"
+#include "api/ai_airporttypelist.hpp.sq"
 #include "api/ai_base.hpp.sq"
 #include "api/ai_basestation.hpp.sq"
 #include "api/ai_bridge.hpp.sq"
@@ -177,6 +178,7 @@ void AIInstance::RegisterAPI()
 	SQAIList_Register(this->engine);
 	SQAIAccounting_Register(this->engine);
 	SQAIAirport_Register(this->engine);
+	SQAIAirportTypeList_Register(this->engine);
 	SQAIBase_Register(this->engine);
 	SQAIBaseStation_Register(this->engine);
 	SQAIBridge_Register(this->engine);

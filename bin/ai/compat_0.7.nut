@@ -326,3 +326,16 @@ AICompany.GetCompanyValue <- function(company)
 {
 	return AICompany.GetQuarterlyCompanyValue(company, AICompany.CURRENT_QUARTER);
 }
+
+// AirportType enum
+AIAirport.AT_SMALL         <-   0; // The small airport.
+AIAirport.AT_LARGE         <-   1; // The large airport.
+AIAirport.AT_METROPOLITAN  <-   3; // The metropolitan airport.
+AIAirport.AT_INTERNATIONAL <-   4; // The international airport.
+AIAirport.AT_COMMUTER      <-   5; // The commuter airport.
+AIAirport.AT_INTERCON      <-   7; // The intercontinental airport.
+
+AIAirport.AT_HELIPORT      <-   2; // The heliport.
+AIAirport.AT_HELISTATION   <-   8; // The helistation.
+AIAirport.AT_HELIDEPOT     <-   6; // The helidepot.
+AIAirport.AT_INVALID       <- 255; // Invalid airport.

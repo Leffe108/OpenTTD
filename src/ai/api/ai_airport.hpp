@@ -23,26 +23,6 @@ public:
 	static const char *GetClassName() { return "AIAirport"; }
 
 	/**
-	 * The types of airports available in the game.
-	 */
-	enum AirportType {
-		/* Note: the values _are_ important as they represent an in-game value */
-		AT_SMALL         =   0, ///< The small airport.
-		AT_LARGE         =   1, ///< The large airport.
-		AT_METROPOLITAN  =   3, ///< The metropolitan airport.
-		AT_INTERNATIONAL =   4, ///< The international airport.
-		AT_COMMUTER      =   5, ///< The commuter airport.
-		AT_INTERCON      =   7, ///< The intercontinental airport.
-
-		/* Next are the airports which only have helicopter platforms */
-		AT_HELIPORT      =   2, ///< The heliport.
-		AT_HELISTATION   =   8, ///< The helistation.
-		AT_HELIDEPOT     =   6, ///< The helidepot.
-
-		AT_INVALID       = 255, ///< Invalid airport.
-	};
-
-	/**
 	 * All plane types available.
 	 */
 	enum PlaneType {

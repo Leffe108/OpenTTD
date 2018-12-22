@@ -113,7 +113,7 @@
 	return st->airport.GetHangarTile(0);
 }
 
-/* static */ AIAirport::AirportType AIAirport::GetAirportType(TileIndex tile)
+/* static */ AirportType AIAirport::GetAirportType(TileIndex tile)
 {
 	if (!AITile::IsStationTile(tile)) return AT_INVALID;
 

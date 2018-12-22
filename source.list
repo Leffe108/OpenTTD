@@ -625,6 +625,7 @@ ai/ai_storage.hpp
 # AI API
 ai/api/ai_accounting.hpp
 ai/api/ai_airport.hpp
+ai/api/ai_airporttype.hpp
 ai/api/ai_airporttypelist.hpp
 ai/api/ai_base.hpp
 ai/api/ai_basestation.hpp
@@ -681,6 +682,7 @@ ai/api/ai_waypointlist.hpp
 # AI API Implementation
 ai/api/ai_accounting.cpp
 ai/api/ai_airport.cpp
+ai/api/ai_airporttype.cpp
 ai/api/ai_airporttypelist.cpp
 ai/api/ai_base.cpp
 ai/api/ai_basestation.cpp

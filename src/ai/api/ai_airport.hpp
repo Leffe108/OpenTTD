@@ -13,6 +13,7 @@
 #define AI_AIRPORT_HPP
 
 #include "ai_object.hpp"
+#include "ai_airporttype.hpp"
 
 /**
  * Class that handles all airport related functions.
@@ -21,44 +22,6 @@ class AIAirport : public AIObject {
 public:
 	/** Get the name of this class to identify it towards squirrel. */
 	static const char *GetClassName() { return "AIAirport"; }
-
-	/**
-	 * All plane types available.
-	 */
-	enum PlaneType {
-		/* Note: the values _are_ important as they represent an in-game value */
-		PT_HELICOPTER    =   0, ///< A helicopter.
-		PT_SMALL_PLANE   =   1, ///< A small plane.
-		PT_BIG_PLANE     =   3, ///< A big plane.
-
-		PT_INVALID       =  -1, ///< An invalid PlaneType
-	};
-
-	/**
-	 * Checks whether the given AirportType is valid and available.
-	 * @param type The AirportType to check.
-	 * @return True if and only if the AirportType is valid and available.
-	 * @post return value == true -> IsAirportInformationAvailable returns true.
-	 */
-	static bool IsValidAirportType(AirportType type);
-
-	/**
-	 * Can you get information on this airport type? As opposed to
-	 * IsValidAirportType this will return also return true when
-	 * an airport type is no longer buildable.
-	 * @param type The AirportType to check.
-	 * @return True if and only if the AirportType is valid.
-	 * @post return value == false -> IsValidAirportType returns false.
-	 */
-	static bool IsAirportInformationAvailable(AirportType type);
-
-	/**
-	 * Get the cost to build this AirportType.
-	 * @param type The AirportType to check.
-	 * @pre AirportAvailable(type).
-	 * @return The cost of building this AirportType.
-	 */
-	static Money GetPrice(AirportType type);
 
 	/**
 	 * Checks whether the given tile is actually a tile with a hangar.
@@ -75,30 +38,6 @@ public:
 	 * @return True if and only if the tile has an airport.
 	 */
 	static bool IsAirportTile(TileIndex tile);
-
-	/**
-	 * Get the width of this type of airport.
-	 * @param type The type of airport.
-	 * @pre IsAirportInformationAvailable(type).
-	 * @return The width in tiles.
-	 */
-	static int32 GetAirportWidth(AirportType type);
-
-	/**
-	 * Get the height of this type of airport.
-	 * @param type The type of airport.
-	 * @pre IsAirportInformationAvailable(type).
-	 * @return The height in tiles.
-	 */
-	static int32 GetAirportHeight(AirportType type);
-
-	/**
-	 * Get the coverage radius of this type of airport.
-	 * @param type The type of airport.
-	 * @pre IsAirportInformationAvailable(type).
-	 * @return The radius in tiles.
-	 */
-	static int32 GetAirportCoverageRadius(AirportType type);
 
 	/**
 	 * Get the number of hangars of the airport.
@@ -126,7 +65,7 @@ public:
 	 * @param type The type of airport to build.
 	 * @param station_id The station to join, AIStation::STATION_NEW or AIStation::STATION_JOIN_ADJACENT.
 	 * @pre AIMap::IsValidTile(tile).
-	 * @pre AirportAvailable(type).
+	 * @pre AIAirportType::IsBuildableAirportType(type).
 	 * @pre station_id == AIStation::STATION_NEW || station_id == AIStation::STATION_JOIN_ADJACENT || AIStation::IsValidStation(station_id).
 	 * @exception AIError::ERR_AREA_NOT_CLEAR
 	 * @exception AIError::ERR_FLAT_LAND_REQUIRED
@@ -154,27 +93,6 @@ public:
 	 * @return The AirportType of the airport.
 	 */
 	static AirportType GetAirportType(TileIndex tile);
-
-	/**
-	 * Get the noise that will be added to the nearest town if an airport was
-	 *  built at this tile.
-	 * @param tile The tile to check.
-	 * @param type The AirportType to check.
-	 * @pre IsAirportInformationAvailable(type).
-	 * @return The amount of noise added to the nearest town.
-	 * @note The noise will be added to the town with TownID GetNearestTown(tile, type).
-	 */
-	static int GetNoiseLevelIncrease(TileIndex tile, AirportType type);
-
-	/**
-	 * Get the TownID of the town whose local authority will influence
-	 *  an airport at some tile.
-	 * @param tile The tile to check.
-	 * @param type The AirportType to check.
-	 * @pre IsAirportInformationAvailable(type).
-	 * @return The TownID of the town closest to the tile.
-	 */
-	static TownID GetNearestTown(TileIndex tile, AirportType type);
 };
 
 #endif /* AI_AIRPORT_HPP */

@@ -242,10 +242,10 @@
 	return CountArticulatedParts(engine_id, true) != 0;
 }
 
-/* static */ AIAirport::PlaneType AIEngine::GetPlaneType(EngineID engine_id)
+/* static */ AIAirportType::PlaneType AIEngine::GetPlaneType(EngineID engine_id)
 {
-	if (!IsValidEngine(engine_id)) return AIAirport::PT_INVALID;
-	if (GetVehicleType(engine_id) != AIVehicle::VT_AIR) return AIAirport::PT_INVALID;
+	if (!IsValidEngine(engine_id)) return AIAirportType::PT_INVALID;
+	if (GetVehicleType(engine_id) != AIVehicle::VT_AIR) return AIAirportType::PT_INVALID;
 
-	return (AIAirport::PlaneType)::AircraftVehInfo(engine_id)->subtype;
+	return (AIAirportType::PlaneType)::AircraftVehInfo(engine_id)->subtype;
 }

@@ -1,0 +1,49 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "ai_airporttype.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIAirportType::PlaneType GetParam(ForceType<AIAirportType::PlaneType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (AIAirportType::PlaneType)tmp; }
+	template <> int Return<AIAirportType::PlaneType>(HSQUIRRELVM vm, AIAirportType::PlaneType res) { sq_pushinteger(vm, (int32)res); return 1; }
+
+	/* Allow AIAirportType to be used as Squirrel parameter */
+	template <> AIAirportType *GetParam(ForceType<AIAirportType *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (AIAirportType *)instance; }
+	template <> AIAirportType &GetParam(ForceType<AIAirportType &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(AIAirportType *)instance; }
+	template <> const AIAirportType *GetParam(ForceType<const AIAirportType *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (AIAirportType *)instance; }
+	template <> const AIAirportType &GetParam(ForceType<const AIAirportType &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(AIAirportType *)instance; }
+	template <> int Return<AIAirportType *>(HSQUIRRELVM vm, AIAirportType *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "AIAirportType", res, NULL, DefSQDestructorCallback<AIAirportType>); return 1; }
+} // namespace SQConvert
+
+void SQAIAirportType_Register(Squirrel *engine)
+{
+	DefSQClass <AIAirportType> SQAIAirportType("AIAirportType");
+	SQAIAirportType.PreRegister(engine);
+	SQAIAirportType.AddConstructor<void (AIAirportType::*)(), 1>(engine, "x");
+
+	SQAIAirportType.DefSQConst(engine, AIAirportType::PT_HELICOPTER,  "PT_HELICOPTER");
+	SQAIAirportType.DefSQConst(engine, AIAirportType::PT_SMALL_PLANE, "PT_SMALL_PLANE");
+	SQAIAirportType.DefSQConst(engine, AIAirportType::PT_BIG_PLANE,   "PT_BIG_PLANE");
+	SQAIAirportType.DefSQConst(engine, AIAirportType::PT_INVALID,     "PT_INVALID");
+
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsBuildableAirportType,            "IsBuildableAirportType",            2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsAirportTypeInformationAvailable, "IsAirportTypeInformationAvailable", 2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::IsValidPlaneType,                  "IsValidPlaneType",                  2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetPrice,                          "GetPrice",                          2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportWidth,                   "GetAirportWidth",                   2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportHeight,                  "GetAirportHeight",                  2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetAirportCoverageRadius,          "GetAirportCoverageRadius",          2, ".i");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetNoiseLevelIncrease,             "GetNoiseLevelIncrease",             3, ".ii");
+	SQAIAirportType.DefSQStaticMethod(engine, &AIAirportType::GetNearestTown,                    "GetNearestTown",                    3, ".ii");
+
+	SQAIAirportType.PostRegister(engine);
+}

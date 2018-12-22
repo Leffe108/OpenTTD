@@ -14,7 +14,7 @@
 
 #include "ai_vehicle.hpp"
 #include "ai_rail.hpp"
-#include "ai_airport.hpp"
+#include "ai_airporttype.hpp"
 
 /**
  * Class that handles all engine related functions.
@@ -251,7 +251,7 @@ public:
 	 * @pre GetVehicleType(engine_id) == AIVehicle::VT_AIR.
 	 * @return The PlaneType the engine has.
 	 */
-	static AIAirport::PlaneType GetPlaneType(EngineID engine_id);
+	static AIAirportType::PlaneType GetPlaneType(EngineID engine_id);
 };
 
 #endif /* AI_ENGINE_HPP */

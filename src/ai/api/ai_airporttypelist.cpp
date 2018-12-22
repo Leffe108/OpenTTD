@@ -11,12 +11,12 @@
 
 #include "../../stdafx.h"
 #include "ai_airporttypelist.hpp"
-#include "ai_airport.hpp"
+#include "ai_airporttype.hpp"
 #include "../../airport.h"
 
 AIAirportTypeList::AIAirportTypeList()
 {
 	for (byte j = 0; j <= NUM_AIRPORTS; j++) {
-		if (AIAirport::IsAirportInformationAvailable(j)) this->AddItem(j);
+		if (AIAirportType::IsAirportTypeInformationAvailable(j)) this->AddItem(j);
 	}
 }
